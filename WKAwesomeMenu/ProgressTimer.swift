@@ -31,7 +31,7 @@ class ProgressTimer: NSObject {
     
     func start() {
         self.startTime = CACurrentMediaTime()
-        let link = CADisplayLink(target: self, selector: #selector(ProgressTimer.tick(_:)))
+        let link = CADisplayLink(target: self, selector: #selector(tick(_:)))
         link.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
     }
     
