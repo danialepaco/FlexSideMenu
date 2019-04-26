@@ -57,10 +57,10 @@ open class WKAwesomeMenu: UIViewController {
         self.rootView = root.view
         self.menuView = menu.view
         
-        self.addChildViewController(root)
-        self.addChildViewController(menu)
-        root.didMove(toParentViewController: self)
-        menu.didMove(toParentViewController: self)
+        self.addChild(root)
+        self.addChild(menu)
+        root.didMove(toParent: self)
+        menu.didMove(toParent: self)
         
         // Disable top to scroll up for the menu
         // in order to scroll the root view controller
@@ -82,37 +82,37 @@ open class WKAwesomeMenu: UIViewController {
             let background = UIImageView(image: self.options.backgroundImage)
             self.view.addSubview(background)
             background.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addConstraint(NSLayoutConstraint(item: background, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal,
-                toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0))
-            self.view.addConstraint(NSLayoutConstraint(item: background, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal,
-                toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
-            self.view.addConstraint(NSLayoutConstraint(item: background, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal,
-                toItem: self.view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0))
-            self.view.addConstraint(NSLayoutConstraint(item: background, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal,
-                toItem: self.view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0))
+            self.view.addConstraint(NSLayoutConstraint(item: background, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal,
+                toItem: self.view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0))
+            self.view.addConstraint(NSLayoutConstraint(item: background, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal,
+                toItem: self.view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0))
+            self.view.addConstraint(NSLayoutConstraint(item: background, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal,
+                toItem: self.view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0))
+            self.view.addConstraint(NSLayoutConstraint(item: background, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal,
+                toItem: self.view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 0))
         }
         
         self.menuView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.menuView)
-        self.view.addConstraint(NSLayoutConstraint(item: self.menuView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal,
-            toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.menuView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal,
-            toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.menuView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal,
-            toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.options.menuWidth))
+        self.view.addConstraint(NSLayoutConstraint(item: self.menuView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: self.view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.menuView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: self.view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.menuView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: self.options.menuWidth))
         
         self.shadowView.clipsToBounds = true
         self.shadowView.backgroundColor = self.options.shadowColor
         self.shadowView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.shadowView)
-        self.view.addConstraint(NSLayoutConstraint(item: self.shadowView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal,
-            toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.shadowView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal,
-            toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.shadowView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal,
-            toItem: self.view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.shadowView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal,
-            toItem: self.view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.shadowView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: self.view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.shadowView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: self.view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.shadowView, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: self.view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.shadowView, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: self.view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 0))
         
         self.setupRootViewUI()
     }
@@ -121,19 +121,19 @@ open class WKAwesomeMenu: UIViewController {
         self.rootView.clipsToBounds = true
         self.rootView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.rootView)
-        self.view.addConstraint(NSLayoutConstraint(item: self.rootView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal,
-            toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.rootView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal,
-            toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.rootView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal,
-            toItem: self.view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.rootView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal,
-            toItem: self.view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.rootView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: self.view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.rootView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: self.view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.rootView, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: self.view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.rootView, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal,
+            toItem: self.view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 0))
     }
     
     // MARK: - Internal
     
-    func pan(_ pan: UIPanGestureRecognizer) {
+    @objc func pan(_ pan: UIPanGestureRecognizer) {
         
         let translation = pan.translation(in: self.view)
         let velocity = pan.velocity(in: self.view)
@@ -142,13 +142,13 @@ open class WKAwesomeMenu: UIViewController {
         let shouldClose = locationX + velocity.x / 2 < self.options.menuWidth / 2
         
         switch pan.state {
-        case UIGestureRecognizerState.began:
+        case UIGestureRecognizer.State.began:
             self.canSlide = pan.location(in: self.view).x <= self.options.menuGripWidth || !self.isClosed
             if !self.canSlide { break }
             
             self.lightStatusBar = true
             pan.setTranslation(self.lastTranslation, in: self.view)
-        case UIGestureRecognizerState.ended:
+        case UIGestureRecognizer.State.ended:
             if !self.canSlide { break }
             
             self.isClosed = shouldClose
@@ -160,7 +160,7 @@ open class WKAwesomeMenu: UIViewController {
             ProgressTimer.createWithDuration(duration, from: percentage, inverse: shouldClose, callback: { (p) -> Void in
                 self.invalidateRootViewWithPercentage(p)
             })
-        case UIGestureRecognizerState.changed:
+        case UIGestureRecognizer.State.changed:
             if !self.canSlide { break }
             self.invalidateRootViewWithPercentage(locationX / self.options.menuWidth)
             self.lastTranslation = translation
@@ -206,8 +206,8 @@ open class WKAwesomeMenu: UIViewController {
         self.rootViewController = vc
         self.rootView = vc.view
         
-        self.addChildViewController(vc)
-        vc.didMove(toParentViewController: self)
+        self.addChild(vc)
+        vc.didMove(toParent: self)
         
         self.setupRootViewUI()
         
@@ -220,7 +220,7 @@ open class WKAwesomeMenu: UIViewController {
                 self.rootView.alpha = 1
             }) { [weak lastVC] (complete) -> Void in
                 lastVC?.view?.removeFromSuperview()
-                lastVC?.removeFromParentViewController()
+                lastVC?.removeFromParent()
                 self.closeMenu()
         }
     }
@@ -241,7 +241,7 @@ open class WKAwesomeMenu: UIViewController {
         })
     }
     
-    open func closeMenu() {
+    @objc open func closeMenu() {
         self.closeMenuWithDuration(0.2)
     }
     

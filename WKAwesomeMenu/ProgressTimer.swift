@@ -32,10 +32,10 @@ class ProgressTimer: NSObject {
     func start() {
         self.startTime = CACurrentMediaTime()
         let link = CADisplayLink(target: self, selector: #selector(ProgressTimer.tick(_:)))
-        link.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
+        link.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
     }
     
-    func tick(_ link: CADisplayLink) {
+    @objc func tick(_ link: CADisplayLink) {
         let elapsed = link.timestamp - self.startTime
         var percent = self.animationFrom + CGFloat((elapsed / self.animationDuration))
         
