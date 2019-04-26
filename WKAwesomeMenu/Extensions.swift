@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     
-    public func openSideMenu() {
+    @objc public func openSideMenu() {
         self.awesomeMenu?.openMenu()
     }
     
